@@ -1,1 +1,1 @@
-# Research_Python_Bitrate_Profiling
+This Repository contains code to perform bitrate profiling for various HEVC configurations
