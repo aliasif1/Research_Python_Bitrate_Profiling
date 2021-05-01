@@ -1,0 +1,68 @@
+[
+     {
+        "id" : 1,
+        "title" : "CRF",
+        "commands": [
+            "ffmpeg <input> -c:v libx265 -preset <preset> -x265-params crf=<crf> -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     },
+     {
+        "id" : 2,
+        "title" : "VBR",
+        "commands": [
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     },
+     {
+        "id" : 3,
+        "title" : "2 Pass VBR",
+        "commands": [
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params pass=1 -vf scale=<resolution> -c:a copy -f null /dev/null",
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params pass=2 -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     },
+     {
+        "id" : 4,
+        "title" : "VBR with Buffer",
+        "commands": [
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params vbv-bufsize=<bufsize> -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     },
+     {
+        "id" : 5,
+        "title" : "VBR with Buffer and Maxrate (VBF)",
+        "commands": [
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params vbv-maxrate=<maxrate>:vbv-bufsize=<bufsize> -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     },
+     {
+        "id" : 6,
+        "title" : "2 Pass VBR with VBF",
+        "commands": [
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params vbv-maxrate=<maxrate>:vbv-bufsize=<bufsize>:pass=1 -vf scale=<resolution> -c:a copy -f null /dev/null",
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params vbv-maxrate=<maxrate>:vbv-bufsize=<bufsize>:pass=2 -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     },
+     {
+        "id" : 7,
+        "title" : "CBR",
+        "commands": [
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params strict-cbr=1:vbv-maxrate=<maxrate>:vbv-bufsize=<bufsize> -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     },
+     {
+        "id" : 8,
+        "title" : "2 Pass CBR",
+        "commands": [
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params strict-cbr=1:vbv-maxrate=<maxrate>:vbv-bufsize=<bufsize>:pass=1 -vf scale=<resolution> -c:a copy -f null /dev/null",
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -b:v <bitrate> -x265-params strict-cbr=1:vbv-maxrate=<maxrate>:vbv-bufsize=<bufsize>:pass=2 -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     },
+     {
+        "id" : 9,
+        "title" : "Capped CRF",
+        "commands": [
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -x265-params crf=<crf>:vbv-maxrate=<maxrate>:vbv-bufsize=<bufsize> -vf scale=<resolution> -c:a copy <output>"
+        ] 
+     }
+]
