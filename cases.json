@@ -3,7 +3,7 @@
         "id" : 1,
         "title" : "CRF",
         "commands": [
-            "ffmpeg <input> -c:v libx265 -preset <preset> -x265-params crf=<crf> -vf scale=<resolution> -c:a copy <output>"
+            "ffmpeg -i <input> -c:v libx265 -preset <preset> -x265-params crf=<crf> -vf scale=<resolution> -c:a copy <output>"
         ] 
      },
      {

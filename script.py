@@ -66,12 +66,9 @@ def getValidCommands(commands, id):
 
     return validCommands
 
-def writeResult(id, title, time):
-    with open('result.csv', 'w', newline='') as csvfile:
-        fieldnames = ['id', 'title', 'time']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerow({'id':id, 'title':title, 'time':time})
+def writeResult(id, title, duration):
+    with open('result.csv', 'a') as csvfile:
+        csvfile.write('{},{},{}\n'.format(id,title,duration))
 
 #global variables 
 input = 'Inputs'
@@ -92,6 +89,9 @@ createOutputDirectory(output)
 
 #Remove the results file 
 removeResult()
+
+#add a new results file
+writeResult('id', 'title', 'duration')
 
 #run the cases
 for case in cases:
